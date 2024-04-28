@@ -44,9 +44,10 @@ class BareboneBuilder:
         self.text_area.delete(1.0, tk.END)
         self.execute_command("nasm -o /tmp/boot.bin boot.asm",False)
         
-        fff=f'valac -c "$1" -o /tmp/kernel.o'.replace("$1",filename)
+        fff=f'valac -c "$1" '.replace("$1",filename)
         
         self.execute_command(fff,True)
+        self.execute_command("cp -f ./kernel.o /tmp/kernel.o",True)
         self.execute_command("ld -T link.ld /tmp/kernel.o -o /tmp/hello.com -nostdlib",True)
         self.execute_command("objcopy -O binary  /tmp/hello.com  /tmp/hellos.com",True)
         self.execute_command("dd if=/dev/zero of=/tmp/floppy.img bs=1024 count=1440",True)
