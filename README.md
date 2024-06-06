@@ -1,4 +1,4 @@
-# ram.rom.simulator
+# distro.puppy.tcc
 
-ram iron ring read write random acess
+tcc elfs to puppy os
 
